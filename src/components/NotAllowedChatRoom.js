@@ -11,3 +11,5 @@ class NotAllowedChatRoom extends React.Component
     );
   };
 };
+
+export default NotAllowedChatRoom;

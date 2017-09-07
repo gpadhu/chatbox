@@ -31,3 +31,14 @@ li.list-group-item:hover {
 .list-group-item {
   color: white;
 }
+
+.list-group-item.choose {
+  background-color: #1064bd;
+  border-top: 5px solid #1064bd;
+  border-bottom: 5px solid #1064bd;
+}
+
+.container {
+  margin: 0px;
+  padding: 0px;
+}

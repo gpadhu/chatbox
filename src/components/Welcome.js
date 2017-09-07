@@ -4,7 +4,7 @@ import config from '../../config';
 
 class Welcome extends React.Component {
   activeClass = (id) => {
-    return 'list-group-item' + (this.props.users[id].id === config.current_user ? ' active' : '')
+    return 'list-group-item' + (this.props.users[id].id === config.currentUser ? ' active' : '')
   };
   reRender = () => {
     this.forceUpdate();

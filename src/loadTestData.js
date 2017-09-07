@@ -20,12 +20,12 @@ MongoClient.connect(config.mongodbUri, (err, db) => {
     {
       "id": 3,
       "name": "Germany",
-      "userIds": [101, 102, 104]
+      "userIds": [101, 102, 104, 105]
     },
     {
       "id": 4,
       "name": "France",
-      "userIds": [101, 105]
+      "userIds": [101, 103, 102, 105]
     },
     {
       "id": 5,

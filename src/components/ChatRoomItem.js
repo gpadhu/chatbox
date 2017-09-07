@@ -1,13 +1,14 @@
 import React from 'react';
+import config from '../../config';
 
-class ChatRoomItem extends React.Component
-{
-  showRoom = () => {
-    console.log(this.props.room.id);
+class ChatRoomItem extends React.Component {
+  setChatRoom = () => {
+    config.setCurrentRoom(this.props.room._id);
+    this.props.askAppToRender();
   };
   render() {
     return(
-      <li className="list-group-item" onClick={this.showRoom}>{this.props.room.name}</li>
+      <li className={this.props.active} onClick={this.setChatRoom}>{this.props.room.name}</li>
     );
   };
 };

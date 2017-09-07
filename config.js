@@ -3,8 +3,12 @@ var env = process.env;
 export default {
   port: env.PORT || 8080,
   mongodbUri: 'mongodb://localhost:27017/chatbox',
-  current_user: 101,
+  currentUser: 101,
+  currentRoom: 'welcome',
   setCurrentUser(id) {
-    this.current_user = id
+    this.currentUser = id
+  },
+  setCurrentRoom(id) {
+    this.currentRoom = id
   }
 }
