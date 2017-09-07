@@ -2,23 +2,28 @@
   "chatRooms": [
     {
       "id": 1,
-      "name": "United Kingdom"
+      "name": "United Kingdom",
+      "userIds": [101, 102, 103, 104, 105]
     },
     {
       "id": 2,
-      "name": "India"
+      "name": "India",
+      "userIds": [102, 103, 104, 105]
     },
     {
       "id": 3,
-      "name": "Germany"
+      "name": "Germany",
+      "userIds": [101, 102, 104]
     },
     {
       "id": 4,
-      "name": "France"
+      "name": "France",
+      "userIds": [101, 105]
     },
     {
       "id": 5,
-      "name": "Netherland"
+      "name": "Netherland",
+      "userIds": [102, 103, 104, 105]
     }
   ]
 }

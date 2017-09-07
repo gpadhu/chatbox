@@ -1,0 +1,33 @@
+.chatrooms {
+  padding-top: 50px;
+  height:100vh;
+  border: 2px solid deepskyblue;
+  text-align: center;
+  background-color: dodgerblue;
+  color: white;
+}
+
+li.list-group-item {
+  background-color: dodgerblue;
+  cursor: pointer;
+}
+
+li.list-group-item:hover {
+  background-color: deepskyblue;
+}
+.welcome {
+  height:100vh;
+}
+
+.welcome .note{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: dodgerblue;
+}
+
+.list-group-item {
+  color: white;
+}
