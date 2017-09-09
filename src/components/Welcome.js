@@ -4,7 +4,7 @@ import config from '../../config';
 
 class Welcome extends React.Component {
   activeClass = (id) => {
-    return 'list-group-item' + (this.props.users[id].id === config.currentUser ? ' active' : '')
+    return 'list-group-item' + (this.props.users[id]._id === config.currentUser ? ' active' : '')
   };
   reRender = () => {
     this.forceUpdate();
@@ -14,7 +14,7 @@ class Welcome extends React.Component {
       <div className="welcome">
         <div className="note">
           <h1>Welcome to ChatBox!</h1>
-          <h3>Please choose a chat room to chat with your friens.</h3>
+          <h3>Please choose a chat room to chat with your friends.</h3>
           <p className="list-title">Choose User:</p>
           <ul className="list-group">
             { Object.keys(this.props.users).map(id =>

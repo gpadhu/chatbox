@@ -1,7 +1,7 @@
 import express from 'express';
 import data from '../src/chatRoomsData';
 import axios from 'axios';
-import { MongoClient } from 'mongodb';
+import { MongoClient, ObjectID } from 'mongodb';
 import assert from 'assert';
 import config from '../config';
 
@@ -41,6 +41,54 @@ router.get('/users', (req, res)=> {
 
       users[user._id] = user;
     });
+});
+
+router.get('/chatroom/:id/conversations', (req, res)=> {
+  let conversations = {};
+  let chatroom = req.params.id;
+  mdb.collection('conversations').find({ chatroom : Number(chatroom) })
+    .each((err, conversation) => {
+      assert.equal(null, err);
+      
+      if (!conversation) {
+        res.send( { conversations });
+        return;
+      }
+
+      conversations[conversation._id] = conversation;
+    });
+});
+
+router.put('/chatroom/:id', (req, res)=> {
+  console.log(req.body);
+  mdb.collection('chatrooms').updateOne(
+    { _id: ObjectID(req.params.id) },
+    { $push: { userIds: Number(req.body.user) }}
+  ).then( (result) => {
+    res.send( { result });
+  });
+});
+
+router.post('/conversations', (req, res)=> {
+  mdb.collection('conversations').insertOne({
+    "name" : req.body.name,
+    "user": req.body.user,
+    "chatroom": req.body.chatroom,
+    "message": req.body.message,
+    "timestamp": req.body.timestamp
+  }).then((result) => {
+    let newMessage = result.ops[0];
+    res.send({ newMessage });
+  });
+});
+
+router.put('/conversation/:id', (req, res)=> {
+  mdb.collection('conversations').updateOne(
+    { _id: ObjectID(req.params.id) },
+    { $set: {message: req.body.message }}
+  ).then((result) => {
+    res.send({ result });
+  });
 });
 
 export default router;

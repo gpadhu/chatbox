@@ -11,10 +11,6 @@ class ChatRoomList extends React.Component {
     this.forceUpdate();
     this.props.reRenderApp();
   };
-  askAppToRender = () => {
-    this.forceUpdate();
-    this.props.reRenderApp();
-  };
   render() {
     return (
       <div className="chatrooms">
@@ -22,7 +18,7 @@ class ChatRoomList extends React.Component {
         <ul className="list-group">
           <li className="list-group-item choose" onClick={()=>this.setChatRoom('welcome')}>Choose User</li>
           { Object.keys(this.props.rooms).map(id =>
-            <ChatRoomItem key={id} room={this.props.rooms[id]} askAppToRender={this.askAppToRender} active={this.activeClass(id)}/>
+            <ChatRoomItem key={id} room={this.props.rooms[id]} setChatRoom={()=>this.setChatRoom(id)} active={this.activeClass(id)}/>
           )}
         </ul>
       </div>

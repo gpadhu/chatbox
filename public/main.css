@@ -26,6 +26,23 @@ li.list-group-item:hover {
   transform: translate(-50%, -50%);
   text-align: center;
   color: dodgerblue;
+  cursor: inherit;
+}
+.welcome .note p.join {
+  background-color: #1064bd;
+  color: #fff;
+  padding: 20px 0px;
+  cursor: pointer;
+}
+.welcome .conversations {
+  text-align: center;
+  color: dodgerblue;
+}
+
+.welcome .conversations h3 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 5px solid;
 }
 
 .list-group-item {
@@ -38,7 +55,45 @@ li.list-group-item:hover {
   border-bottom: 5px solid #1064bd;
 }
 
+.list-group-item.conversation {
+  background-color: #02b2f9;
+  text-align: left;
+}
+
 .container {
   margin: 0px;
   padding: 0px;
+}
+
+.sender {
+  font-style: italic;
+  font-size: 70%;
+  text-align: right;
+  float: right;
+}
+
+.message {
+  padding-top: 50px;
+}
+.form-group, .row, input {
+  min-width: 100%;
+}
+
+.chats {
+  max-height: 70vh;
+  overflow-y: scroll;
+}
+.container {
+  min-width: 100%;
+}
+.row {
+  margin: 0px auto;
+}
+
+.col-md-9, .col-md-3 {
+  padding-left: 0px;
+}
+
+.name {
+  text-decoration: underline;
 }

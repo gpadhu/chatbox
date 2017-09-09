@@ -4,7 +4,7 @@ import config from '../../config';
 class ChatRoomItem extends React.Component {
   setChatRoom = () => {
     config.setCurrentRoom(this.props.room._id);
-    this.props.askAppToRender();
+    this.props.setChatRoom();
   };
   render() {
     return(
