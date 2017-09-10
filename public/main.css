@@ -28,12 +28,23 @@ li.list-group-item:hover {
   color: dodgerblue;
   cursor: inherit;
 }
+
 .welcome .note p.join {
   background-color: #1064bd;
   color: #fff;
   padding: 20px 0px;
   cursor: pointer;
 }
+
+.unsubscribe {
+  background-color: #1064bd;
+  color: #fff;
+  cursor: pointer;
+  font-size: 50%;
+  float: right;
+  margin-top: 30px;
+}
+
 .welcome .conversations {
   text-align: center;
   color: dodgerblue;
@@ -58,6 +69,12 @@ li.list-group-item:hover {
 .list-group-item.conversation {
   background-color: #02b2f9;
   text-align: left;
+}
+
+.list-group-item.unauthorised {
+  background-color: #fff;
+  color: #1064bd;
+  cursor: default;
 }
 
 .container {
@@ -96,4 +113,8 @@ li.list-group-item:hover {
 
 .name {
   text-decoration: underline;
+}
+
+.delete-btn {
+  visibility: hidden;
 }

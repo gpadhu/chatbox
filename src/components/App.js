@@ -33,7 +33,15 @@ class App extends React.Component {
       })
       .catch(err => {
         console.log(err);
-      });    
+      });
+
+   this.loopConversationDB(); 
+  };
+
+  loopConversationDB = () => {
+    setInterval( ()=> {
+      this.reRenderApp();
+    }, 3000);
   };
 
   getConversation = () => {
@@ -43,8 +51,14 @@ class App extends React.Component {
   addToChat = (newMessage) => {
     this.state.conversations[newMessage._id] = newMessage;
     this.forceUpdate();
+    this.scrollToBottomChat();
+  };
+
+  scrollToBottomChat = () => {
     let chatDom = document.getElementsByClassName('chats')[0];
-    chatDom.scrollTop = chatDom.scrollHeight;
+    if (chatDom != undefined) {
+      chatDom.scrollTop = chatDom.scrollHeight;
+    }
   };
 
   editChat = (msg, id) => {
@@ -56,6 +70,17 @@ class App extends React.Component {
     this.state.rooms[room].userIds.push(user);
     this.forceUpdate();
   }
+
+  removeUserFromRoom = (room, user) => {
+    this.state.rooms[room].userIds = this.state.rooms[room].userIds.filter(tempUser => tempUser!= user);
+    this.forceUpdate();
+  }
+
+  deleteMsg = (msg) => {
+    delete(this.state.conversations[msg]);
+    this.forceUpdate();
+  }
+
   setDetailComponent =() => {
     if(config.currentRoom == 'welcome') {
       return <Welcome users={this.state.users}/>
@@ -64,7 +89,8 @@ class App extends React.Component {
       if(this.isUserAllowedToRoom()) {
         return <ChatRoom room={this.state.selectedRoom} conversations={this.state.conversations}
          user={this.state.currentUser} addToChat={(newMessage)=>this.addToChat(newMessage)}
-         editChat={(msg, Id)=> {this.editChat(msg, Id)}} />
+         editChat={(msg, Id)=> {this.editChat(msg, Id)}} removeUserFromRoom={(room, user) => this.removeUserFromRoom(room, user)}
+         deleteMsg={(id)=>this.deleteMsg(id)}/>
       }
       else {
         return <NotAllowedChatRoom room={this.state.selectedRoom} user={this.state.currentUser}

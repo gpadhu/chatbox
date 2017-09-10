@@ -59,12 +59,22 @@ router.get('/chatroom/:id/conversations', (req, res)=> {
     });
 });
 
+
 router.put('/chatroom/:id', (req, res)=> {
-  console.log(req.body);
   mdb.collection('chatrooms').updateOne(
     { _id: ObjectID(req.params.id) },
-    { $push: { userIds: Number(req.body.user) }}
-  ).then( (result) => {
+    { $push: { userIds: Number(req.body.user) }})
+  .then( (result) => {
+    res.send( { result });
+  });
+});
+
+router.put('/chatroom/:id/:user', (req, res)=> {
+  console.log(req.params, req.body);
+  mdb.collection('chatrooms').updateOne(
+    { _id: ObjectID(req.params.id) },
+    { $pull: { userIds: Number(req.params.user) }})
+  .then( (result) => {
     res.send( { result });
   });
 });
@@ -75,8 +85,8 @@ router.post('/conversations', (req, res)=> {
     "user": req.body.user,
     "chatroom": req.body.chatroom,
     "message": req.body.message,
-    "timestamp": req.body.timestamp
-  }).then((result) => {
+    "timestamp": req.body.timestamp})
+  .then((result) => {
     let newMessage = result.ops[0];
     res.send({ newMessage });
   });
@@ -85,10 +95,17 @@ router.post('/conversations', (req, res)=> {
 router.put('/conversation/:id', (req, res)=> {
   mdb.collection('conversations').updateOne(
     { _id: ObjectID(req.params.id) },
-    { $set: {message: req.body.message }}
-  ).then((result) => {
+    { $set: {message: req.body.message }})
+  .then((result) => {
     res.send({ result });
   });
+});
+
+router.delete('/conversation/:id', (req, res) => {
+  mdb.collection('conversations').remove({ _id: ObjectID(req.params.id)})
+    .then((result) => {
+      res.send( { result });
+    });
 });
 
 export default router;
